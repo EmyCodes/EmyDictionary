@@ -16,6 +16,7 @@ def translator(word):
     """ To be updated """
     word = word.lower()
     if word in data:
+        print(f"\n{word.upper()}", ": \n")
         return data[word]
 
     # Check for matches
@@ -28,6 +29,7 @@ def translator(word):
         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
         # user = input(" ")
         if user_response.lower() in yes:
+            print(f"\n{suggestion.upper()}", ": \n")
             return data[suggestion]
         elif user_response.lower() in no:
             return "This word doesn't exist. Please, double check it."
@@ -41,6 +43,9 @@ def translator(word):
 iterate = True
 while iterate:
     user = input("Enter a word: ")
-    print(translator(user))
+    meanings = translator(user)
+    # print(f"\n{meanings.keys().upper()}", ": \n")
+    for meaning in meanings:
+        print(f"\t{meaning} \n")
     if user.capitalize() in special_commands:
         iterate = False
