@@ -23,12 +23,17 @@ def translator(word):
 
     if suggestions:
         suggestion = suggestions[0]
+        yes =["y", "yes"]
+        no = ["n", "no"]
         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
         # user = input(" ")
-        if user_response.lower() == "y" or user-user_response.lower() == "yes":
+        if user_response.lower() in yes:
             return data[suggestion]
-        else:
+        elif user_response.lower() in no:
             return "This word doesn't exist. Please, double check it."
+            
+        else:
+            return "Invalid Input. Please, try again with the right word."
     else:
         return "This word doesn't exist. Please, double check it."
 
