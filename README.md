@@ -1,4 +1,3 @@
-```markdown
 # Interactive English Dictionary
 
 This Interactive English Dictionary program is a simple Python script built and developed by OGUNDARE OLAMIDE EMMANUEL. The program allows users to look up the meanings of English words interactively.
