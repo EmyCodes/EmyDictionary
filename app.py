@@ -13,7 +13,17 @@ with open("data.json", mode="r", encoding="utf-8") as f:
     data = json.load(f)
 
 def translator(word):
-    """ To be updated """
+    """
+    Translates the given word and returns its meanings.
+
+    Parameters:
+        word (str): The English word to be translated.
+
+    Returns:
+        list or str: A list of meanings if the word is found,
+                    a string with suggestions if a close match is found,
+                    or an error message if the word doesn't exist.
+    """
     word = word.lower()
     if word in data:
         print(f"\n{word.upper()}", ": \n")
