@@ -23,9 +23,9 @@ def translator(word):
 
     if suggestions:
         suggestion = suggestions[0]
-        user = input(f"Do you mean {suggestion}? (y | n):  ")
+        user_response = input(f"Do you mean {suggestion}? (y | n):  ")
         # user = input(" ")
-        if user.lower() == "y" or user.lower() == "yes":
+        if user_response.lower() == "y" or user-user_response.lower() == "yes":
             return data[suggestion]
         else:
             return "This word doesn't exist. Please, double check it."
