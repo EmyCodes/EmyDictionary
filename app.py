@@ -18,3 +18,10 @@ def translator(word):
     else:
         return "This word doesn't exist. Please, double check"
 
+
+iterate = True
+while iterate:
+    user = input("Enter a word: ")
+    print(translator(user))
+    if user.capitalize() in special_commands:
+        iterate = False
