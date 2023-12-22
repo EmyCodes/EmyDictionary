@@ -7,7 +7,8 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 import json
 from difflib import get_close_matches
 
-special_commands = ["Cancel", "Terminate", "Exit"]
+special_commands = ["Cancel -f", "Terminate -f", "Exit -f", "Quit -f",
+                    "Cancel -F", "Terminate -F", "Exit -F", "Quit -F"]
 
 with open("data.json", mode="r", encoding="utf-8") as f:
     data = json.load(f)
@@ -54,9 +55,10 @@ def translator(word):
 iterate = True
 while iterate:
     user = input("Enter a word: ")
-    meanings = translator(user)
-    # print(f"\n{meanings.keys().upper()}", ": \n")
-    for meaning in meanings:
-        print(f"\t{meaning} \n")
     if user.capitalize() in special_commands:
         iterate = False
+    else:
+        meanings = translator(user)
+        for meaning in meanings:
+            print(f"\t{meaning} \n")
+    
