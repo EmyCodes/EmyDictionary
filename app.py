@@ -12,6 +12,7 @@ special_commands = ["Cancel", "Terminate", "Exit"]
 with open("data.json", mode="r", encoding="utf-8") as f:
     data = json.load(f)
 
+
 def translator(word):
     """
     Translates the given word and returns its meanings.
@@ -34,7 +35,7 @@ def translator(word):
 
     if suggestions:
         suggestion = suggestions[0]
-        yes =["y", "yes"]
+        yes = ["y", "yes"]
         no = ["n", "no"]
         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
         # user = input(" ")
@@ -43,11 +44,11 @@ def translator(word):
             return data[suggestion]
         elif user_response.lower() in no:
             return "This word doesn't exist. Please, double check it."
-            
         else:
             return "Invalid Input. Please, try again with the right word."
     else:
         return "This word doesn't exist. Please, double check it."
+
 
 # Usage
 iterate = True
