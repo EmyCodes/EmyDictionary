@@ -1,0 +1,1 @@
+from models.data import load_data
