@@ -7,6 +7,7 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 import json
 from difflib import get_close_matches
 
+from resources.error import error_messages
 from models import load_data
 
 def translator(word):
@@ -23,7 +24,8 @@ def translator(word):
     """
     word = word.lower()
 
-    data = load_data()
+    data = load_data() # Load the data from the json file
+
     if word in data:
         print(f"\n{word.upper()}", ": \n")
         return data[word]
@@ -35,15 +37,15 @@ def translator(word):
         suggestion = suggestions[0]
         yes = ["y", "yes"]
         no = ["n", "no"]
+
         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
-        # user = input(" ")
+
         if user_response.lower() in yes:
             print(f"\n{suggestion.upper()}", ": \n")
             return data[suggestion]
         elif user_response.lower() in no:
-            return "This word doesn't exist. Please, double check it."
+            return error_messages[0]
         else:
-            return "Invalid Input. Please, try again with the right word."
+            return error_messages[1]
     else:
-        return "This word doesn't exist. Please, double check it."
-
+        return error_messages[0]
