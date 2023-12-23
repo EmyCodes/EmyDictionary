@@ -1,0 +1,1 @@
+from resources.interpreter import translator
