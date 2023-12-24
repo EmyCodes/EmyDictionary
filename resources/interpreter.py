@@ -5,24 +5,58 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 """
 
 import json
-import os
 from difflib import get_close_matches
 
-from resources.error import error_messages
-from resources import Base, engine
-from models import data, Dictionary
+from models import data, DictionaryModel
+from resources import error_messages
+from resources import Base, engine, session
 
 
-data = data
 def create_table(engine=engine):
     Base.metadata.create_all(engine)
 
-def insert_data(session, data):
+
+def insert_data(session=session, data=data):
     for word, meanings in data.items():
-        new_word = Dictionary(word=word, meanings=json.dumps(meanings))
+        new_word = DictionaryModel(word=word, meanings=json.dumps(meanings))
         session.add(new_word)
 
     session.commit()
+
+
+def load_data_from_db(session=session):
+    word = input("Enter a word: ").lower()
+    result = session.query(DictionaryModel).filter_by(word=word).first()
+
+    if result:
+        meanings = json.loads(result.meanings)
+        print(f"\n{word.upper()}:\n")
+        for meaning in meanings:
+            print(f"\t{meaning}\n")
+        suggestions = get_close_matches(word, session.query(DictionaryModel))
+
+    if suggestions:
+        suggestion = suggestions[0]
+        yes = ["y", "yes"]
+        no = ["n", "no"]
+
+        user_response = input(f"Do you mean {suggestion}? (y | n):  ")
+
+        if user_response.lower() in yes:
+            print(f"\n{suggestion.upper()}", ": \n")
+            return data[suggestion]
+        elif user_response.lower() in no:
+            return error_messages[0]
+        else:
+            return error_messages[1]
+    else:
+        return error_messages[0]
+
+
+if __name__ == "__main__":
+    create_table()
+    insert_data()
+    load_data_from_db()
 
 # def translator(word):
 #     """
@@ -45,21 +79,21 @@ def insert_data(session, data):
 #         return data[word]
 
 #     # Check for matches
-#     suggestions = get_close_matches(word, data.keys())
+    # suggestions = get_close_matches(word, data.keys())
 
-#     if suggestions:
-#         suggestion = suggestions[0]
-#         yes = ["y", "yes"]
-#         no = ["n", "no"]
+    # if suggestions:
+    #     suggestion = suggestions[0]
+    #     yes = ["y", "yes"]
+    #     no = ["n", "no"]
 
-#         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
+    #     user_response = input(f"Do you mean {suggestion}? (y | n):  ")
 
-#         if user_response.lower() in yes:
-#             print(f"\n{suggestion.upper()}", ": \n")
-#             return data[suggestion]
-#         elif user_response.lower() in no:
-#             return error_messages[0]
-#         else:
-#             return error_messages[1]
-#     else:
-#         return error_messages[0]
+    #     if user_response.lower() in yes:
+    #         print(f"\n{suggestion.upper()}", ": \n")
+    #         return data[suggestion]
+    #     elif user_response.lower() in no:
+    #         return error_messages[0]
+    #     else:
+    #         return error_messages[1]
+    # else:
+    #     return error_messages[0]
