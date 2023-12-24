@@ -3,7 +3,7 @@
 from sqlalchemy import Column, String, Integer, Text
 from resources import Base
 
-class Dictionary(Base):
+class DictionaryModel(Base):
     """To be Updated"""
     __tablename__ = "dictionary"
     id = Column(Integer, primary_key=True)
