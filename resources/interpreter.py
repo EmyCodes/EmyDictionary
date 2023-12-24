@@ -5,47 +5,61 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 """
 
 import json
+import os
 from difflib import get_close_matches
 
 from resources.error import error_messages
-from models import load_data
+from resources import Base, engine
+from models import data, Dictionary
 
-def translator(word):
-    """
-    Translates the given word and returns its meanings.
 
-    Parameters:
-        word (str): The English word to be translated.
+data = data
+def create_table(engine=engine):
+    Base.metadata.create_all(engine)
 
-    Returns:
-        list or str: A list of meanings if the word is found,
-                    a string with suggestions if a close match is found,
-                    or an error message if the word doesn't exist.
-    """
-    word = word.lower()
+def insert_data(session, data):
+    for word, meanings in data.items():
+        new_word = Dictionary(word=word, meanings=json.dumps(meanings))
+        session.add(new_word)
 
-    data = load_data() # Load the data from the json file
+    session.commit()
 
-    if word in data:
-        print(f"\n{word.upper()}", ": \n")
-        return data[word]
+# def translator(word):
+#     """
+#     Translates the given word and returns its meanings.
 
-    # Check for matches
-    suggestions = get_close_matches(word, data.keys())
+#     Parameters:
+#         word (str): The English word to be translated.
 
-    if suggestions:
-        suggestion = suggestions[0]
-        yes = ["y", "yes"]
-        no = ["n", "no"]
+#     Returns:
+#         list or str: A list of meanings if the word is found,
+#                     a string with suggestions if a close match is found,
+#                     or an error message if the word doesn't exist.
+#     """
+#     word = word.lower()
 
-        user_response = input(f"Do you mean {suggestion}? (y | n):  ")
+#     data = data() # Load the data from the json file
 
-        if user_response.lower() in yes:
-            print(f"\n{suggestion.upper()}", ": \n")
-            return data[suggestion]
-        elif user_response.lower() in no:
-            return error_messages[0]
-        else:
-            return error_messages[1]
-    else:
-        return error_messages[0]
+#     if word in data:
+#         print(f"\n{word.upper()}", ": \n")
+#         return data[word]
+
+#     # Check for matches
+#     suggestions = get_close_matches(word, data.keys())
+
+#     if suggestions:
+#         suggestion = suggestions[0]
+#         yes = ["y", "yes"]
+#         no = ["n", "no"]
+
+#         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
+
+#         if user_response.lower() in yes:
+#             print(f"\n{suggestion.upper()}", ": \n")
+#             return data[suggestion]
+#         elif user_response.lower() in no:
+#             return error_messages[0]
+#         else:
+#             return error_messages[1]
+#     else:
+#         return error_messages[0]
