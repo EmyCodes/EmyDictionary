@@ -4,20 +4,14 @@ This Interactive English Dictionary program is
 built and developed by OGUNDARE OLAMIDE EMMANUEL
 """
 
-import json
-from difflib import get_close_matches
-
-from models import data
 from models.dictionary import DictionaryModel
-from resources.error import error_messages
-from resources import Base, engine, session
 
 
-def create_table(engine=engine):
+def create_table(engine):
     Base.metadata.create_all(engine)
 
 
-def insert_data(session=session, data=data):
+def insert_data(session, data):
     for word, meanings in data.items():
         new_word = DictionaryModel(word=word, meanings=json.dumps(meanings))
         session.add(new_word)
@@ -25,8 +19,7 @@ def insert_data(session=session, data=data):
     session.commit()
 
 
-def load_data_from_db(session=session):
-    word = input("Enter a word: ").lower()
+def load_data_from_db(word, session):
     result = session.query(DictionaryModel).filter_by(word=word).first()
 
     if result:
@@ -34,7 +27,7 @@ def load_data_from_db(session=session):
         print(f"\n{word.upper()}:\n")
         for meaning in meanings:
             print(f"\t{meaning}\n")
-        suggestions = get_close_matches(word, session.query(DictionaryModel))
+        suggestions = get_close_matches(word, [entry.word for entry in session.query(DictionaryModel)])
 
     if suggestions:
         suggestion = suggestions[0]
@@ -55,9 +48,17 @@ def load_data_from_db(session=session):
 
 
 if __name__ == "__main__":
-    create_table()
-    insert_data()
-    load_data_from_db()
+    import json
+    from difflib import get_close_matches
+
+    from models import data
+    from resources.error import error_messages
+    from resources import Base, engine, session
+
+    create_table(engine)
+    insert_data(session, data)
+    word = input("Enter a word: ").lower()
+    load_data_from_db(word)
 
 # def translator(word):
 #     """
