@@ -7,8 +7,9 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 import json
 from difflib import get_close_matches
 
-from models import data, DictionaryModel
-from resources import error_messages
+from models import data
+from models.dictionary import DictionaryModel
+from resources.error import error_messages
 from resources import Base, engine, session
 
 
