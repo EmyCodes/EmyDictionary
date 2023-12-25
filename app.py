@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from models import data
+from resources import interpreter
 
 
 special_commands = ["Cancel -f", "Terminate -f", "Exit -f", "Quit -f",
