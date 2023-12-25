@@ -3,4 +3,4 @@
 username = "EmyCodes"
 password = "19022002"
 host = "localhost"
-database = "Dictionary"
+database = "EmyDictionary"
