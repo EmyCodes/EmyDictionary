@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from config import username, password, host, database
+from resources.interpreter import create_table
 
 Base = declarative_base()
 
@@ -13,4 +14,8 @@ metadata = MetaData()
 Session = sessionmaker(bind=engine)
 
 session = Session()
+
+create_table(engine)
+
+
 

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from sqlalchemy import Column, String, Integer, Text
-from resources import Base
+from resources.base import Base
 
 class DictionaryModel(Base):
     """To be Updated"""

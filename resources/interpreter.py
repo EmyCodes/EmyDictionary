@@ -53,8 +53,8 @@ if __name__ == "__main__":
 
     from models import data
     from resources.error import error_messages
-    from resources import Base, engine, session
-
+    from resources.base import Base, engine, session
+    from resources.interpreter import load_data_from_db, create_table, insert_data
     create_table(engine)
     insert_data(session, data)
     word = input("Enter a word: ").lower()
