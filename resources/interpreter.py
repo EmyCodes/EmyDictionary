@@ -5,7 +5,7 @@ built and developed by OGUNDARE OLAMIDE EMMANUEL
 """
 
 from models.dictionary import DictionaryModel
-
+from app import Base
 
 def create_table(engine):
     Base.metadata.create_all(engine)
@@ -54,8 +54,8 @@ if __name__ == "__main__":
     from models import data
     from resources.error import error_messages
     from resources.base import Base, engine, session
-    from resources.interpreter import load_data_from_db, create_table, insert_data
-    create_table(engine)
+    from resources.interpreter import load_data_from_db, insert_data
+    # create_table(engine)
     insert_data(session, data)
     word = input("Enter a word: ").lower()
     load_data_from_db(word)

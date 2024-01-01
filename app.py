@@ -10,8 +10,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from config import username, password, host, database
-from resources.interpreter import create_table, load_data_from_db
-
+from resources.interpreter import load_data_from_db
+from resources.interpreter import create_table
 Base = declarative_base()
 
 engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")

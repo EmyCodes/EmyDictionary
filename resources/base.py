@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from config import username, password, host, database
-from resources.interpreter import create_table
+# from resources.interpreter import create_table
 
 Base = declarative_base()
 
@@ -15,7 +15,7 @@ Session = sessionmaker(bind=engine)
 
 session = Session()
 
-create_table(engine)
+# create_table(engine)
 
 
 
