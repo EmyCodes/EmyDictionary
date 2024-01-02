@@ -1,32 +1,60 @@
-# Interactive English Dictionary
+# EmyDictionary
 
-This Interactive English Dictionary program is a simple Python script. The program allows users to look up the meanings of English words interactively.
+## Introduction
 
-## Features
-- Utilizes the difflib library to find close matches for user input.
-- Provides suggestions for similar words when the entered word is not found.
-- Includes special commands like "Cancel," "Terminate," and "Exit" to control program flow.
+EmyDictionary is an interactive English dictionary program built and developed by **OGUNDARE OLAMIDE EMMANUEL**. This program allows users to look up the meanings of English words interactively.
 
-## Prerequisites
-- Python 3.x installed on your system.
+## Installation
 
-## Usage
-1. Clone or download the repository to your local machine.
-2. Navigate to the project directory using the terminal.
-3. Create a virtual environment (optional but recommended):
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/EmyCodes/EmyDictionary.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd EmyDictionary
+   ```
+
+3. Create a virtual environment and activate it:
+
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    ```
-4. Install dependencies:
+
+4. Install the required dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
-5. Run the program:
+
+## Usage
+
+1. Make sure your virtual environment is activated:
+
+   ```bash
+   source .venv/bin/activate
+   ```
+
+2. Run the program:
+
    ```bash
    python app.py
    ```
-6. Enter a word when prompted and get its meanings interactively.
+
+3. Enter a word when prompted, and the program will provide the meanings of the word.
+
+## Project Structure
+
+- `app.py`: The main entry point of the program.
+- `config.py`: Configuration file containing database credentials.
+- `models/`: Directory containing the database model and related files.
+- `resources/`: Directory containing utility functions and error messages.
+- `AUTHOR`: File containing information about the author.
+- `LICENSE`: MIT License file.
 
 ## Special Commands
 - The program recognizes special commands:
@@ -34,9 +62,17 @@ This Interactive English Dictionary program is a simple Python script. The progr
   - "Terminate": To terminate the program.
   - "Exit": To exit the program.
 
-## AUTHOR
+## Author
 
-- **Ogundare Olamide Emmanuel**
-  - **GitHub:** [EmyCodes](https://github.com/EmyCodes)
-  - **Twitter:** [@EmyCodes](https://twitter.com/EmyCodes)
-  - **LinkedIn:** [EmyCodes](https://linkedin.com/in/emycodes)
+**OGUNDARE OLAMIDE EMMANUEL**
+- GitHub: [EmyCodes](https://github.com/EmyCodes)
+- Twitter: [@EmyCodes](https://twitter.com/EmyCodes)
+- LinkedIn: [Olamide Emmanuel Ogundare](https://linkedin.com/in/emycodes)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+Special thanks to [OGUNDARE OLAMIDE EMMANUEL](https://github.com/EmyCodes) for creating and sharing this interactive English dictionary program.
