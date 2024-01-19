@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from resources import interpreter
-
+from resources import error_messages
 special_commands = ["Cancel -f", "Terminate -f", "Exit -f", "Quit -f",
                     "Cancel -F", "Terminate -F", "Exit -F", "Quit -F"]
 
@@ -11,5 +11,10 @@ while iterate:
         iterate = False
     else:
         meanings = interpreter(user)
-        for meaning in meanings:
-            print(f"\t{meaning} \n")
+        if meanings in error_messages:
+            print(f"\n\t{meanings}\n")
+        else:
+            word_count = len(meanings)
+            for word in range(word_count):
+                print(f"{word + 1}. \t{meanings[word]} \n")
+        
