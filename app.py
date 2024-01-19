@@ -16,5 +16,5 @@ while iterate:
         else:
             word_count = len(meanings)
             for word in range(word_count):
-                print(f"{word + 1}. \t{meanings[word]} \n")
+                print(f"\t{word + 1}. {meanings[word]} \n")
         
