@@ -26,7 +26,7 @@ def translator(word):
     # Load the data from the json file
 
     if word in data:
-        print(f"\n{word.upper()}", ": \n")
+        print(f"\n{word.upper()}: \n")
         return data[word]
 
     # Check for matches
@@ -35,12 +35,12 @@ def translator(word):
     if suggestions:
         suggestion = suggestions[0]
         yes = ["y", "yes"]
-        no = ["n", "no"]
+        no = ["n", "no", ""]
 
         user_response = input(f"Do you mean {suggestion}? (y | n):  ")
 
         if user_response.lower() in yes:
-            print(f"\n{suggestion.upper()}", ": \n")
+            print(f"\n{suggestion.upper()}: \n")
             return data[suggestion]
         elif user_response.lower() in no:
             return error_messages[0]
