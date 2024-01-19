@@ -1,28 +1,6 @@
 #!/usr/bin/python3
-# from models import data
-# from resources.interpreter import load_data_from_db
-# from resources.base import session
-
-#!/usr/bin/python3
-# from models.dictionary import DictionaryModel
-from sqlalchemy import create_engine, MetaData
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-
-from config import username, password, host, database
-from resources.interpreter import load_data_from_db
-from resources.interpreter import create_table
-Base = declarative_base()
-
-engine = create_engine(f"mysql+pymysql://{username}:{password}@{host}/{database}")
-metadata = MetaData()
-Session = sessionmaker(bind=engine)
-
-session = Session()
-
-create_table(engine)
-
-
+from resources import interpreter
+from resources import error_messages
 special_commands = ["Cancel -f", "Terminate -f", "Exit -f", "Quit -f",
                     "Cancel -F", "Terminate -F", "Exit -F", "Quit -F"]
 
@@ -32,6 +10,11 @@ while iterate:
     if user.capitalize() in special_commands:
         iterate = False
     else:
-        meanings = load_data_from_db(user, session)
-        for meaning in meanings:
-            print(f"\t{meaning} \n")
+        meanings = interpreter(user)
+        if meanings in error_messages:
+            print(f"\n\t{meanings}\n")
+        else:
+            word_count = len(meanings)
+            for word in range(word_count):
+                print(f"\t{word + 1}. {meanings[word]} \n")
+        
