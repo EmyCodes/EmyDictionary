@@ -23,6 +23,12 @@ class dbModel():
             value_str = json.dumps(value)
             self.cur.execute("INSERT INTO EmyDictionary VALUES (NULL, ?, ?)", (key, value_str))
             self.conn.commit()
+
+    def find(self):
+        self.cur.execute("SELECT * FROM EmyDictionary")
+        rows = self.cur.fetchall()
+        for row in rows:
+            print(row)
             
     def close_db(self):
         self.conn.close()
