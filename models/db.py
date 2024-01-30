@@ -19,16 +19,17 @@ class dbModel():
         self.conn.commit()
 
     def insert_into_db(self):
+        print("Inserting...\nPlease Wait...")
         for key, value in data.items():
             value_str = json.dumps(value)
             self.cur.execute("INSERT INTO EmyDictionary VALUES (NULL, ?, ?)", (key, value_str))
             self.conn.commit()
 
-    def find(self):
-        self.cur.execute("SELECT * FROM EmyDictionary")
+    def get_meaning(self, id):
+        self.cur.execute("SELECT * FROM EmyDictionary WHERE id=?", (id,))
         rows = self.cur.fetchall()
         for row in rows:
-            print(row)
+            return rows
             
     def close_db(self):
         self.conn.close()
@@ -37,5 +38,5 @@ class dbModel():
 
 db = dbModel()
 # db.insert_into_db()
-# db.find()
-# db.close_db()
+db.find()
+db.close_db()
