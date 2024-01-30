@@ -18,3 +18,4 @@ while iterate:
             for word in range(word_count):
                 print(f"\t{word + 1}. {meanings[word]} \n")
         
+# print(interpreter("rain"))
