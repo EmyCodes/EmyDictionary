@@ -9,7 +9,7 @@ class dbModel():
     conn = sqlite3.connect("EmyDictionary.db")
     cur = conn.cursor()
     def __init__(self):
-        self.cur.execute("CREATE TABLE IF NOT EXISTS (id INTEGER PRIMARY KEY, keyword STRING, meanings TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS EmyDictionary (id INTEGER PRIMARY KEY, keyword STRING, meanings TEXT)")
         self.conn.commit()
         self.conn.close()
 
