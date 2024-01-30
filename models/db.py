@@ -13,6 +13,11 @@ class dbModel():
         self.conn.commit()
         self.conn.close()
 
+    def insert_into_db(self, keyword, meanings):
+        self.cur.execute("INSERT INTO EmyDictionary VALUES (NULL, ?, ?)", (keyword, meanings))
+        self.conn.commit()
+        self.conn.close()
+        
     def find(self):
         pass
 
