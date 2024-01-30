@@ -3,7 +3,7 @@ import sqlite3
 """
 Database Creation
 """
-
+print(data)
 
 class dbModel():
     conn = sqlite3.connect("EmyDictionary.db")
