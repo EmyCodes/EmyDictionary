@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 from difflib import get_close_matches
 
-from models import data
+from models import dbModel
 from resources import error_messages
 """
 This Interactive English Dictionary program is
 built and developed by OGUNDARE OLAMIDE EMMANUEL
 """
 
+db = dbModel()
 
 def translator(word):
     """
@@ -22,6 +23,8 @@ def translator(word):
                     or an error message if the word doesn't exist.
     """
     word = word.lower()
+    data = db.get_meaning(word)
+
 
     # Load the data from the json file
 
