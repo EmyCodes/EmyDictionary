@@ -1,12 +1,16 @@
 #!/usr/bin/python3
 import json
 import sqlite3
-
+import os
 
 """
 Database Creation
 """
 
+# Load the data from the json file
+file_path = os.path.join(os.path.dirname(__file__), "data.json")
+with open(file_path, mode="r", encoding="utf-8") as f:
+    data = json.load(f)
 
 
 class dbModel():
