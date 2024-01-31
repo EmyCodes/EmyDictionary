@@ -57,8 +57,7 @@ class dbModel():
         self.cur.execute("SELECT keyword, meanings FROM EmyDictionary WHERE keyword=?", (keyword,))
         self.rows = self.cur.fetchall()
         for row in self.rows:
-            print(row)
-        return self.rows
+            return row
             
     def close_db(self):
         """
@@ -68,7 +67,7 @@ class dbModel():
         # if self.conn.close:
         #     print("Closed")
 
-db = dbModel()
-# db.insert_into_db()
-db.get_meaning("rain")
-db.close_db()
+# db = dbModel()
+# # db.insert_into_db()
+# db.get_meaning("rain")
+# db.close_db()
