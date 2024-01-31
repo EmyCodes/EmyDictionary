@@ -25,15 +25,15 @@ def translator(word):
     word = word.lower()
     data = db.get_meaning(word)
 
-
     # Load the data from the json file
-
     if word in data:
         print(f"\n{word.upper()}: \n")
-        return data[word]
-
+        meanings = data[1]
+        for meaning in meanings:
+            for _ in  meaning:
+                print(_)
     # Check for matches
-    suggestions = get_close_matches(word, data.keys())
+    suggestions = get_close_matches(word, data)
 
     if suggestions:
         suggestion = suggestions[0]
