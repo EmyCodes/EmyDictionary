@@ -13,9 +13,9 @@ while iterate:
         meanings = interpreter(user)
         if meanings in error_messages:
             print(f"\n\t{meanings}\n")
-        else:
-            word_count = len(meanings)
-            for word in range(word_count):
-                print(f"\t{word + 1}. {meanings[word]} \n")
+        # else:
+        #     word_count = len(meanings)
+        #     for word in range(word_count):
+        #         print(f"\t{word + 1}. {meanings[word]} \n")
         
 # print(interpreter("rain"))
