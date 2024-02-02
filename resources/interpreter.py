@@ -44,7 +44,7 @@ def translator(word):
 
         if user_response.lower() in yes:
             print(f"\n{suggestion.upper()}: \n")
-            return data[suggestion]
+            return db.get_meaning(suggestion)
         elif user_response.lower() in no:
             return error_messages[0]
         else:
