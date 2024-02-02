@@ -12,7 +12,8 @@ while iterate:
     else:
         meanings = interpreter(user)
         count = len(meanings)
-        if type(meanings) == str:
+        # if type(meanings) == str:
+        for i in range(count):
             print(meanings)
 # rain = input("Enter a word: ")
 # print(interpreter(rain))
