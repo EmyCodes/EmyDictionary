@@ -29,13 +29,11 @@ def translator(word):
     if word in data:
         print(f"\n{word.upper()}: \n")
         meanings = data[1]
-        for meaning in meanings:
-            for _ in  meaning:
-                print(_)
-    # Check for matches
-    suggestions = get_close_matches(word, data)
+        return meanings
+    else:
+        suggestions = get_close_matches(word, data)
 
-    if suggestions:
+        # if suggestions:
         suggestion = suggestions[0]
         yes = ["y", "yes"]
         no = ["n", "no", ""]
@@ -49,5 +47,5 @@ def translator(word):
             return error_messages[0]
         else:
             return error_messages[1]
-    else:
-        return error_messages[0]
+    # else:
+    #         return error_messages[0]
