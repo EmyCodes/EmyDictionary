@@ -31,7 +31,7 @@ def translator(word):
         meanings = data[1]
         return meanings
     else:
-        suggestions = get_close_matches(word, data)
+        suggestions = get_close_matches(word, db.get_all())
 
         # if suggestions:
         suggestion = suggestions[0]
