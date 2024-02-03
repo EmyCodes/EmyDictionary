@@ -58,6 +58,17 @@ class dbModel():
         self.rows = self.cur.fetchall()
         for row in self.rows:
             return row
+
+    def get_all(self):
+        """
+        Returns:\n
+        \ttuple of all items in the database
+        """
+        self.cur.execute("SELECT keyword FROM EmyDictionary")
+        self.rows = self.cur.fetchall()
+        for row in self.rows:
+            print(row)
+            return row
             
     def close_db(self):
         """
@@ -67,7 +78,9 @@ class dbModel():
         # if self.conn.close:
         #     print("Closed")
 
-# db = dbModel()
+db = dbModel()
+db.get_all()
 # # db.insert_into_db()
-# db.get_meaning("rain")
-# db.close_db()
+db.get_meaning("rain")
+db.close_db()
+
