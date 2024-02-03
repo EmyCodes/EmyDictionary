@@ -6,14 +6,17 @@ special_commands = ["Cancel -f", "Terminate -f", "Exit -f", "Quit -f",
 
 iterate = True
 while iterate:
-    user = input("Enter a word: ")
-    if user.capitalize() in special_commands:
-        iterate = False
-    else:
-        meanings = interpreter(user)
-        count = len(meanings)
-        # if type(meanings) == str:
-        for i in range(count):
-            print(meanings)
+    try:
+        user = input("Enter a word: ")
+        if user.capitalize() in special_commands:
+            iterate = False
+        else:
+            meanings = interpreter(user)
+            count = len(meanings)
+            # if type(meanings) == str:
+            for i in range(count):
+                print(meanings)
+    except Exception:
+        print("\n\tCheck your Input. It must be a string!\n")
 # rain = input("Enter a word: ")
 # print(interpreter(rain))
