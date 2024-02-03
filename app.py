@@ -16,7 +16,16 @@ while iterate:
             # if type(meanings) == str:
             for i in range(count):
                 print(meanings)
-    except Exception:
-        print("\n\tCheck your Input. It must be a string!\n")
+    except TypeError:
+            print("\n\tCheck your Input. It must be a string!\n")
+    except KeyboardInterrupt:
+        # print("\n\tCheck your Input. It must be a string!\n")
+        print("\n\nExit with any of the folloiwing commands:\n")
+        for i in range(len(special_commands)):
+            if i < len(special_commands) -1:
+                print(special_commands[i], end=", ")
+            else:
+                print(special_commands[i], end="\n")
+
 # rain = input("Enter a word: ")
 # print(interpreter(rain))
