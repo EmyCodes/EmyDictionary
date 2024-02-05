@@ -8,6 +8,16 @@ db = dbModel()
 root = Tk()
 
 
+def search_command():
+    global meanings
+    display.delete(0, END)
+    responses = db.get_meaning(keyword_text.get().lower())
+    for response in range(1, len(responses)):
+        meanings = responses[response]
+    for i in range(0, len(meanings)):
+        print(meanings[i])
+        display.insert(END, meanings[i])
+
 def close_command():
     db.close_db()
     root.destroy()
@@ -26,7 +36,7 @@ keyword_entry = Entry(root, border=2, textvariable=keyword_text)
 keyword_entry.grid(row=1, column=1)
 
 # Buttons
-search = Button(root, text="Search", width=12, border=3)
+search = Button(root, text="Search", width=12, border=3, command=search_command)
 search.grid(row=2, column=9)
 close = Button(root, text="Close", width=12, border=3, command=close_command)
 close.grid(row=3, column=9)
