@@ -14,9 +14,9 @@ def search_command():
     responses = db.get_meaning(keyword_text.get().lower())
     for response in range(1, len(responses)):
         meanings = responses[response]
-    for i in range(0, len(meanings)):
-        print(meanings[i])
-        display.insert(END, meanings[i])
+    for meaning in meanings:
+        print(meaning, end="")
+        display.insert(END, meaning)
 
 def close_command():
     db.close_db()
