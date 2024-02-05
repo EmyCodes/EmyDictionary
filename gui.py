@@ -1,7 +1,16 @@
 #!/usr/bin/python3
 from tkinter import *
 
+from models.db import dbModel
+from resources import interpreter
+
+db = dbModel()
 root = Tk()
+
+
+def close_command():
+    db.close_db()
+    root.destroy()
 
 root.wm_title("EmyDictionary")
 
@@ -19,7 +28,7 @@ keyword_entry.grid(row=1, column=1)
 # Buttons
 search = Button(root, text="Search", width=12, border=3)
 search.grid(row=2, column=9)
-close = Button(root, text="Close", width=12, border=3, command=root.destroy)
+close = Button(root, text="Close", width=12, border=3, command=close_command)
 close.grid(row=3, column=9)
 
 
