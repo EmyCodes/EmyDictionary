@@ -12,8 +12,11 @@ def search_command():
     global meanings
     display.delete(0, END)
     responses = db.get_meaning(keyword_text.get().lower())
-    for response in range(1, len(responses)):
-        meanings = responses[response]
+    if not responses:
+        display.insert(END, "No records found.")
+    else:
+        for response in range(1, len(responses)):
+            meanings = responses[response]
     for meaning in meanings:
         print(meaning, end="")
         display.insert(END, meaning)
