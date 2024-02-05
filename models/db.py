@@ -78,9 +78,9 @@ class dbModel():
         # if self.conn.close:
         #     print("Closed")
 
-db = dbModel()
-db.get_all()
-# # db.insert_into_db()
-db.get_meaning("rain")
-db.close_db()
+# db = dbModel()
+# db.get_all()
+# # # db.insert_into_db()
+# db.get_meaning("rain")
+# db.close_db()
 
