@@ -9,7 +9,6 @@ root = Tk()
 
 
 def search_command():
-    global meanings
     display.delete(0, END)
     responses = db.get_meaning(keyword_text.get().lower())
     if not responses:
@@ -17,9 +16,9 @@ def search_command():
     else:
         for response in range(1, len(responses)):
             meanings = responses[response]
-    for meaning in meanings:
-        print(meaning, end="")
-        display.insert(END, meaning)
+            for meaning in meanings:
+                print(meaning, end="")
+                display.insert(END, meaning)
 
 def close_command():
     db.close_db()
