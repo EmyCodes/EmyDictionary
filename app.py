@@ -25,9 +25,9 @@ def search_command():
         display.insert(END, meanings)
         return
     for i in range(len(meanings)):
-        meaning = "{}. {}".format(i+1,
-                                  {meanings[i].strip("[").strip("]").strip("'").strip('"')})
-        # print(meaning)
+        meaning = "{}. {}\n".format(i+1,
+                                  meanings[i].strip("[]").strip('"'))
+        print(meaning)
         display.insert(END, meaning)
 
 def close_command():
