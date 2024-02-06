@@ -2,7 +2,7 @@
 from tkinter import *
 
 from models.db import dbModel
-from resources import interpreter
+
 
 db = dbModel()
 root = Tk()
