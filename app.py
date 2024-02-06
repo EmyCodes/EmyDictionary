@@ -34,6 +34,10 @@ def close_command():
     db.close_db()
     root.destroy()
 
+def clear_command():
+    keyword_entry.delete(0, END)
+    display.delete(0, END)
+
 root.wm_title("EmyDictionary")
 
 # Labels
@@ -50,15 +54,18 @@ keyword_entry.grid(row=1, column=1)
 # Buttons
 search = Button(root, text="Search", width=12, border=3, command=search_command)
 search.grid(row=2, column=9)
-close = Button(root, text="Close", width=12, border=3, command=close_command)
-close.grid(row=3, column=9)
 
+clear = Button(root, text="Clear", width=12, border=3, command=clear_command)
+clear.grid(row=4, column=9)
+
+close = Button(root, text="Close", width=12, border=3, command=close_command)
+close.grid(row=6, column=9)
 
 # ListBox
 display = Listbox(root, height=6, width=35, border=2)
 display.grid(row=2, column=1, columnspan=3, rowspan=5)
 
 __copyright = Label(root, text="(C) EmyCodes 2024")
-__copyright.grid(row=10, column=2, columnspan=2)
+__copyright.grid(row=8, column=1, columnspan=3, rowspan=5)
 
 root.mainloop()
