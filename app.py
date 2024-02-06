@@ -13,15 +13,22 @@ def _search():
         return "No records found."
     else:
         # meaning = responses[1].split(", ")
-        meanings = responses[1].split(", ")
-        print(meanings)
+        meanings = responses[1].split('", ')
+        # print(meanings)
         return meanings
 
 
 def search_command():
     display.delete(0, END)
-    meaning = _search()
-    display.insert(END, meaning)
+    meanings = _search()
+    if meanings == "No records found.":
+        display.insert(END, meanings)
+        return
+    for i in range(len(meanings)):
+        meaning = "{}. {}".format(i+1,
+                                  {meanings[i].strip("[").strip("]").strip("'").strip('"')})
+        # print(meaning)
+        display.insert(END, meaning)
 
 def close_command():
     db.close_db()
