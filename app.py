@@ -7,18 +7,21 @@ from models.db import dbModel
 db = dbModel()
 root = Tk()
 
+def _search():
+    responses = db.get_meaning(keyword_text.get().lower())
+    if not responses:
+        return "No records found."
+    else:
+        # meaning = responses[1].split(", ")
+        meanings = responses[1].split(", ")
+        print(meanings)
+        return meanings
+
 
 def search_command():
     display.delete(0, END)
-    responses = db.get_meaning(keyword_text.get().lower())
-    if not responses:
-        display.insert(END, "No records found.")
-    else:
-        for response in range(1, len(responses)):
-            meanings = responses[response]
-            for meaning in meanings:
-                print(meaning, end="")
-                display.insert(END, meaning)
+    meaning = _search()
+    display.insert(END, meaning)
 
 def close_command():
     db.close_db()
