@@ -66,9 +66,7 @@ class dbModel():
         """
         self.cur.execute("SELECT keyword FROM EmyDictionary")
         self.rows = self.cur.fetchall()
-        for row in self.rows:
-            print(row)
-            return row
+        return self.rows
             
     def close_db(self):
         """
