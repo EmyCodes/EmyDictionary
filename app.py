@@ -1,15 +1,25 @@
 #!/usr/bin/python3
+from difflib import get_close_matches
 from tkinter import *
 
 from models.db import dbModel
 
 
 db = dbModel()
+all_words = db.get_all()
+# print(all_words)
 root = Tk()
 
 def _search():
     responses = db.get_meaning(keyword_text.get().lower())
-    if not responses:
+    print(responses)
+    # suggestions = get_close_matches(responses[0], all_words)
+    suggestions = get_close_matches(keyword_text.get().lower(), all_words)
+    print(suggestions)
+    if suggestions:
+        suggestion = suggestions[0]
+        return  f"Do you mean {suggestion}?"
+    elif not suggestions and not responses:
         return "No records found."
     else:
         # meaning = responses[1].split(", ")
@@ -22,6 +32,9 @@ def search_command():
     display.delete(0, END)
     meanings = _search()
     if meanings == "No records found.":
+        display.insert(END, meanings)
+        return
+    if str(meanings).startswith("Do you mean"):
         display.insert(END, meanings)
         return
     for i in range(len(meanings)):
