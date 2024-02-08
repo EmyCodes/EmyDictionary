@@ -6,7 +6,35 @@ from models.db import dbModel
 
 
 db = dbModel()
-print(db.get_all("rain"))
+# print(list(db.get_all("book")))
+def get_matches(n=""):
+    new_sug = []
+    _sug = []
+    _items = db.get_all(n)
+    for i in _items:
+        sug = get_close_matches(n, i)
+        if len(sug) != 0:
+            _sug.append(sug)
+    for i in _sug:
+        for j in i:
+                new_sug.append(j)
+    _check = get_close_matches(n, new_sug)[0]
+    print(_check)
+    return _check
+
+get_matches("book")
+# new_sug = []
+# _sug = []
+# n = "gass"
+# for i in db.get_all(n):
+#     sug = get_close_matches(n, i)
+#     if len(sug) != 0:
+#         _sug.append(sug)
+# for i in _sug:
+#     for j in i:
+#             new_sug.append(j)
+# _check = get_close_matches(n, new_sug)[0]
+# print(_check)
 root = Tk()
 
 def _search():
@@ -14,7 +42,7 @@ def _search():
     # suggestions = get_close_matches(responses[0], all_words)
     if responses is None:
         # suggestion = suggestions[0]
-        suggestion = db.get_all(responses)
+        suggestion = get_matches(responses)
         print(suggestion)
         return  f"Do you mean {suggestion}?"
     elif not responses:
