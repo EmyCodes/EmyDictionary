@@ -65,6 +65,8 @@ class dbModel():
         Returns:\n
         \ttuple of all items in the database
         """
+        if contains is None:
+            return []
         n = len(contains)
         if n < 4:
             self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:2]}%",))
