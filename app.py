@@ -6,7 +6,8 @@ from models.db import dbModel
 
 
 db = dbModel()
-# print(list(db.get_all("book")))
+
+
 def get_matches(n):
     new_sug = []
     _sug = []
@@ -21,28 +22,13 @@ def get_matches(n):
     _check = get_close_matches(n, new_sug)[0]
     return _check
 
-get_matches("gestures")
-# new_sug = []
-# _sug = []
-# n = "gass"
-# for i in db.get_all(n):
-#     sug = get_close_matches(n, i)
-#     if len(sug) != 0:
-#         _sug.append(sug)
-# for i in _sug:
-#     for j in i:
-#             new_sug.append(j)
-# _check = get_close_matches(n, new_sug)[0]
-# print(_check)
+
 root = Tk()
 
 def _search():
     _text = keyword_text.get().lower()
     responses = db.get_meaning(_text)
-    # suggestions = get_close_matches(responses[0], all_words)
-    print(responses)
     if responses is None:
-        # suggestion = suggestions[0]
         suggestion = get_matches(_text)
         if suggestion:
             return f"Do you mean '{suggestion}'?"
@@ -50,9 +36,7 @@ def _search():
     elif not responses:
         pass
     else:
-        # meaning = responses[1].split(", ")
         meanings = responses[1].split('", ')
-        # print(meanings)
         return meanings
 
 
@@ -68,7 +52,6 @@ def search_command():
     for i in range(len(meanings)):
         meaning = "{}. {}\n".format(i+1,
                                   meanings[i].strip("[]").strip('"'))
-        # print(meaning)
         display.insert(END, meaning)
 
 def close_command():
