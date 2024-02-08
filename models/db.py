@@ -22,6 +22,7 @@ class dbModel():
     """
     conn = sqlite3.connect("EmyDictionary.db")
     cur = conn.cursor()
+    contain = ""
 
     def __init__(self):
         """
@@ -64,8 +65,8 @@ class dbModel():
         Returns:\n
         \ttuple of all items in the database
         """
-        n = len(self.contains)
-        if n > 4:
+        n = len(contains)
+        if n < 4:
             self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:2]}%",))
         else:
             self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:3]}%",))
