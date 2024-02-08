@@ -43,10 +43,12 @@ def _search():
     _text = keyword_text.get().lower()
     responses = db.get_meaning(_text)
     if responses is None:
-        suggestion = get_matches(_text)
-        if suggestion:
-            return f"Do you mean '{suggestion}'?"
-        return "No records found."
+        try:
+            suggestion = get_matches(_text)
+            if suggestion:
+                return f"Do you mean '{suggestion}'?"
+        except IndexError:
+            return "No records found."
     elif not responses:
         pass
     else:
