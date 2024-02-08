@@ -61,6 +61,8 @@ class dbModel():
             return row
 
     def get_all(self, contains=""):
+        if contains is None:
+            return []
         """
         Returns:\n
         \ttuple of all items in the database
