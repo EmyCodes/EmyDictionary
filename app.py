@@ -19,7 +19,6 @@ def get_matches(n):
         for j in i:
                 new_sug.append(j)
     _check = get_close_matches(n, new_sug)[0]
-    print(_check)
     return _check
 
 get_matches("gestures")
@@ -38,15 +37,18 @@ get_matches("gestures")
 root = Tk()
 
 def _search():
-    responses = db.get_meaning(keyword_text.get().lower())
+    _text = keyword_text.get().lower()
+    responses = db.get_meaning(_text)
     # suggestions = get_close_matches(responses[0], all_words)
+    print(responses)
     if responses is None:
         # suggestion = suggestions[0]
-        suggestion = get_matches(responses)
-        print(suggestion)
-        return  f"Do you mean {suggestion}?"
-    elif not responses:
+        suggestion = get_matches(_text)
+        if suggestion:
+            return f"Do you mean '{suggestion}'?"
         return "No records found."
+    elif not responses:
+        pass
     else:
         # meaning = responses[1].split(", ")
         meanings = responses[1].split('", ')
