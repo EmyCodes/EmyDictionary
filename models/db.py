@@ -59,12 +59,12 @@ class dbModel():
         for row in self.rows:
             return row
 
-    def get_all(self):
+    def get_all(self, contains=""):
         """
         Returns:\n
         \ttuple of all items in the database
         """
-        self.cur.execute("SELECT keyword FROM EmyDictionary")
+        self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"%{contains}%",))
         self.rows = self.cur.fetchall()
         return self.rows
             
