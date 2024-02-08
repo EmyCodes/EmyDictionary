@@ -7,7 +7,7 @@ from models.db import dbModel
 
 db = dbModel()
 # print(list(db.get_all("book")))
-def get_matches(n=""):
+def get_matches(n):
     new_sug = []
     _sug = []
     _items = db.get_all(n)
@@ -22,7 +22,7 @@ def get_matches(n=""):
     print(_check)
     return _check
 
-get_matches("book")
+get_matches("gestures")
 # new_sug = []
 # _sug = []
 # n = "gass"
