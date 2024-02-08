@@ -64,7 +64,11 @@ class dbModel():
         Returns:\n
         \ttuple of all items in the database
         """
-        self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"%{contains}%",))
+        n = len(self.contains)
+        if n > 4:
+            self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:2]}%",))
+        else:
+            self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:3]}%",))
         self.rows = self.cur.fetchall()
         return self.rows
             
