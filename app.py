@@ -9,13 +9,6 @@ db = dbModel()
 
 
 def get_matches(n):
-    """
-    function to get the closest matches to the word.
-    Parameters:\n
-        n (str): The word to be searched for in the database.
-    Returns:\n
-        str: The closest match to the word.
-    """
     new_sug = []
     _sug = []
     _items = db.get_all(n)
@@ -33,13 +26,6 @@ def get_matches(n):
 root = Tk()
 
 def _search():
-    """
-    function to search for the word in the database.
-    Returns:\n
-        str: The meanings of the word if found,
-             a suggestion if the word is not found,
-             or "No records found." if the word is not found.
-    """
     _text = keyword_text.get().lower()
     responses = db.get_meaning(_text)
     if responses is None:
@@ -55,11 +41,6 @@ def _search():
 
 
 def search_command():
-    """
-    function to implement the search button.
-    Returns:\n
-        None
-    """
     display.delete(0, END)
     meanings = _search()
     if meanings == "No records found.":
@@ -74,20 +55,10 @@ def search_command():
         display.insert(END, meaning)
 
 def close_command():
-    """
-    function to implement the close button.
-    Returns:\n
-        None
-    """
     db.close_db()
     root.destroy()
 
 def clear_command():
-    """
-    function to implement the clear button.
-    Returns:\n
-        None
-    """
     keyword_entry.delete(0, END)
     display.delete(0, END)
 
