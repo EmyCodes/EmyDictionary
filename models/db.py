@@ -44,7 +44,7 @@ class dbModel():
 
     def get_meaning(self, keyword=""):
         """
-        gets the meaning of the word from the database.
+        Gets the meaning of the word from the database.
         Parameters:\n
             keyword (str): The word to be searched for in the database.
         Returns:\n
@@ -58,8 +58,7 @@ class dbModel():
 
     def get_all(self, contains=""):
         """
-        Returns:\n
-        \ttuple of all items in the database
+        Returns all 'contain' match-keyword in the database
         """
         if contains is None:
             return []

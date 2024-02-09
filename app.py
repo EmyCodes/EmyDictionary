@@ -10,7 +10,7 @@ root = Tk()
 
 def _search():
     """
-    function to search for the word in the database.
+    Searches for a word in the database.
     Returns:\n
         str: The meanings of the word if found,
              a suggestion if the word is not found,
@@ -32,9 +32,7 @@ def _search():
 
 def search_command():
     """
-    function to implement the search button.
-    Returns:\n
-        None
+    Searches for specific keyword.
     """
     display.delete(0, END)
     meanings = _search()
@@ -51,18 +49,14 @@ def search_command():
 
 def close_command():
     """
-    function to implement the close button.
-    Returns:\n
-        None
+    Closes database and exit the window close button is toggled
     """
     db.close_db()
     root.destroy()
 
 def clear_command():
     """
-    function to implement the clear button.
-    Returns:\n
-        None
+    Clears the buffer (entry and listbox)
     """
     keyword_entry.delete(0, END)
     display.delete(0, END)
