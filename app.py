@@ -8,6 +8,7 @@ from models.matches import get_matches
 db = dbModel()
 root = Tk()
 
+
 def _search():
     """
     Searches for a word in the database.
@@ -17,7 +18,10 @@ def _search():
              or "No records found." if the word is not found.
     """
     _text = keyword_text.get().lower()
-    responses = db.get_meaning(_text)
+    try:
+        responses = db.get_meaning(_text)[0]
+    except IndexError:
+        responses = None
     if responses is None:
         try:
             suggestion = get_matches(_text, db.get_all(_text))
@@ -47,12 +51,14 @@ def search_command():
                                   meanings[i].strip("[]").strip('"'))
         display.insert(END, meaning)
 
+
 def close_command():
     """
     Closes database and exit the window close button is toggled
     """
     db.close_db()
     root.destroy()
+
 
 def clear_command():
     """
@@ -61,7 +67,9 @@ def clear_command():
     keyword_entry.delete(0, END)
     display.delete(0, END)
 
+
 root.wm_title("EmyDictionary")
+
 
 # Labels
 keyword = Label(root, text="Keyword")
