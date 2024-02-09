@@ -27,8 +27,6 @@ class dbModel():
     def __init__(self):
         """
         Creates the database and the table if they don't exist.
-        Returns:\n
-            None
         """
         self.conn = sqlite3.connect("EmyDictionary.db")
         self.cur = self.conn.cursor()
@@ -38,8 +36,6 @@ class dbModel():
     def insert_into_db(self):
         """
         Inserts the data into the database.
-        Returns:\n
-            None
         """
         for key, value in data.items():
             value_str = json.dumps(value)
@@ -61,12 +57,12 @@ class dbModel():
             return row
 
     def get_all(self, contains=""):
-        if contains is None:
-            return []
         """
         Returns:\n
         \ttuple of all items in the database
         """
+        if contains is None:
+            return []
         n = len(contains)
         if n < 4:
             self.cur.execute("SELECT keyword FROM EmyDictionary WHERE keyword LIKE ?", (f"{contains[0:2]}%",))
