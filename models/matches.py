@@ -3,10 +3,10 @@ from difflib import get_close_matches
 
 def get_matches(keyword, func):
     """
-    function to get the closest matches to the word.
+    function to get the closest match to the word from the database.
     Parameters:\n
-        n (str): The word to be searched for.\n
-        func (list): The list of words to be searched from.
+        keyword (str): The word to be searched for in the database.\n
+        func (list): The list of words from the database.
     Returns:\n
         str: The closest match to the word.
     """
