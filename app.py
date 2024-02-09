@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-from difflib import get_close_matches
 from tkinter import *
 
 from models.db import dbModel
