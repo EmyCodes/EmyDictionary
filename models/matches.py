@@ -15,7 +15,6 @@ def get_matches(keyword, func):
     _sug = []   # a temporary list to store the suggestions (first iteration)
     new_sug = [] # a new list to store the suggestions from the temporary list above (second iteration)
     
-    _check = ""  # the closest match to the word
     for item in _items:
         sug = get_close_matches(keyword, item)
         if len(sug) != 0:
@@ -23,5 +22,6 @@ def get_matches(keyword, func):
     for item in _sug:
         for j in item:
                 new_sug.append(j)
-    _check += get_close_matches(keyword, new_sug)[0]
-    return _check
+    matches = get_close_matches(keyword, new_sug)
+    close_match = matches[0]
+    return close_match
