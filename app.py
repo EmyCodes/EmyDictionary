@@ -26,8 +26,6 @@ def _search():
                 return f"Do you mean '{suggestion}'?"
         except IndexError:
             return "No records found."
-    elif not responses:
-        pass
     else:
         meanings = responses[1].split('", ')
         return meanings
