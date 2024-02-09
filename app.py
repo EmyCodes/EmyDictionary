@@ -8,17 +8,18 @@ from models.db import dbModel
 db = dbModel()
 
 
-def get_matches(n):
+def get_matches(n, func):
     """
     function to get the closest matches to the word.
     Parameters:\n
-        n (str): The word to be searched for in the database.
+        n (str): The word to be searched for.\n
+        func (list): The list of words to be searched from.
     Returns:\n
         str: The closest match to the word.
     """
     new_sug = []
     _sug = []
-    _items = db.get_all(n)
+    _items = func
     for i in _items:
         sug = get_close_matches(n, i)
         if len(sug) != 0:
@@ -44,7 +45,7 @@ def _search():
     responses = db.get_meaning(_text)
     if responses is None:
         try:
-            suggestion = get_matches(_text)
+            suggestion = get_matches(_text, db.get_all(_text))
             if suggestion:
                 return f"Do you mean '{suggestion}'?"
         except IndexError:
