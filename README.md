@@ -56,12 +56,6 @@ EmyDictionary is an interactive English dictionary program built and developed b
 - `AUTHOR`: File containing information about the author.
 - `LICENSE`: MIT License file.
 
-## Special Commands
-- The program recognizes special commands:
-  - "Cancel": To cancel the current operation.
-  - "Terminate": To terminate the program.
-  - "Exit": To exit the program.
-
 ## Author
 
 **OGUNDARE OLAMIDE EMMANUEL**
